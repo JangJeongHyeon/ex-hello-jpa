@@ -18,9 +18,19 @@ public class JpaMain {
 //            member.setName("HelloB");
 //            entityManager.persist(member);
 //            tx.commit();
-            Member member = entityManager.find(Member.class, 1L);
-            System.out.printf("ID: %s NAME: %s\n", member.getId(), member.getName());
-            member.setName("HelloA");
+//            Member member = entityManager.find(Member.class, 1L);
+//            System.out.printf("ID: %s NAME: %s\n", member.getId(), member.getName());
+//            member.setName("HelloA");
+
+            // 비영속
+            Member member = new Member();
+            member.setId(100L);
+            member.setName("HelloJPA");
+
+            // 영속
+            System.out.println("======== BEFORE ========");
+            entityManager.persist(member);
+            System.out.println("======== AFTER ========");
 
             tx.commit();
         } catch (Exception e) {
