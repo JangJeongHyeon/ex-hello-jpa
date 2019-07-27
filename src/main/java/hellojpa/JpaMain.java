@@ -47,13 +47,23 @@ public class JpaMain {
 //            System.out.println("findMember.Id = "+findMember.getId());
 //            System.out.println("findMember.Name = "+findMember.getName());
 
-            Member member1 = entityManager.find(Member.class, 10L);
-            System.out.println("Member.Id = "+member1.getId() + " Member.Name = "+member1.getName());
-            Member member2 = entityManager.find(Member.class, 10L);
-            System.out.println("Member.Id = "+member2.getId() + " Member.Name = "+member2.getName());
+//            Member member1 = entityManager.find(Member.class, 10L);
+//            System.out.println("Member.Id = "+member1.getId() + " Member.Name = "+member1.getName());
+//            Member member2 = entityManager.find(Member.class, 10L);
+//            System.out.println("Member.Id = "+member2.getId() + " Member.Name = "+member2.getName());
+//
+//
+//            System.out.println("Persistence Entity Equal Member1 == Member2 : result -> "+ (member1 == member2));
 
+            // 영속
+            Member member1 = new Member(11L, "A");
+            Member member2 = new Member(12L, "B");
 
-            System.out.println("Persistence Entity Equal Member1 == Member2 : result -> "+ (member1 == member2));
+            entityManager.persist(member1);
+            entityManager.persist(member2);
+
+            System.out.println("=======================");
+
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
