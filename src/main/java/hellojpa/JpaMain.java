@@ -55,14 +55,17 @@ public class JpaMain {
 //
 //            System.out.println("Persistence Entity Equal Member1 == Member2 : result -> "+ (member1 == member2));
 
-            // 영속
-            Member member1 = new Member(11L, "A");
-            Member member2 = new Member(12L, "B");
+//            // 영속
+//            Member member1 = new Member(11L, "A");
+//            Member member2 = new Member(12L, "B");
+//
+//            entityManager.persist(member1);
+//            entityManager.persist(member2);
+//
+//            System.out.println("=======================");
 
-            entityManager.persist(member1);
-            entityManager.persist(member2);
-
-            System.out.println("=======================");
+            Member member = entityManager.find(Member.class, 12L);
+            member.setName("C");
 
             tx.commit();
         } catch (Exception e) {
