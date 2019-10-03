@@ -64,8 +64,9 @@ public class JpaMain {
 //
 //            System.out.println("=======================");
 
-            Member member = entityManager.find(Member.class, 12L);
-            member.setName("C");
+            Member member = entityManager.find(Member.class, 1L);
+            member.setName("zzzzz");
+            entityManager.detach(member);
 
             tx.commit();
         } catch (Exception e) {
