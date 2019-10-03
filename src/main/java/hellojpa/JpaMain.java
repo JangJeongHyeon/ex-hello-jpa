@@ -65,8 +65,7 @@ public class JpaMain {
 //            System.out.println("=======================");
 
             Member member = entityManager.find(Member.class, 1L);
-            member.setName("zzzzz");
-            entityManager.detach(member);
+            member.setName("홍길동");
 
             tx.commit();
         } catch (Exception e) {
