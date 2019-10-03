@@ -10,6 +10,7 @@ public class Member {
     private Long id;
     @Column(unique = true, length = 10)
     private String name;
+    @Column(length = 10)
     private int age;
 
     public Member(){
