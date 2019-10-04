@@ -1,14 +1,17 @@
 package hellojpa;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
 public class Member {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String username;
 
     private Integer age;
@@ -21,6 +24,10 @@ public class Member {
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastModifiedDate;
+
+    private LocalDate testLocalDate;
+
+    private LocalDateTime testLocalDateTime;
 
     @Lob
     private String description;

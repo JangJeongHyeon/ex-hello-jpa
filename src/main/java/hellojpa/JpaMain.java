@@ -64,8 +64,23 @@ public class JpaMain {
 //
 //            System.out.println("=======================");
 
-            Member member = entityManager.find(Member.class, 1L);
-            member.setUsername("홍길동");
+//            Member member = entityManager.find(Member.class, 1L);
+//            member.setId(1L);
+//            member.setUsername("A");
+//            member.setAge(25);
+//            member.setRoleType(RoleType.USER);
+//
+//            entityManager.persist(member);
+//
+            Member member = new Member();
+            member.setUsername("BA");
+            member.setAge(25);
+            member.setRoleType(RoleType.USER);
+
+            System.out.println("============================================");
+            entityManager.persist(member);
+            System.out.println("Member.Id = " + member.getId());
+            System.out.println("============================================");
 
             tx.commit();
         } catch (Exception e) {
