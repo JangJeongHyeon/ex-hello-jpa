@@ -8,33 +8,43 @@ import javax.persistence.Persistence;
 public class JpaMain {
     public static void main(String[] args) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
-        EntityManager entityManager = emf.createEntityManager();
-        EntityTransaction tx = entityManager.getTransaction();
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction tx = em.getTransaction();
         tx.begin();
 
         try {
-            Team team = new Team();
-            team.setName("A");
-            entityManager.persist(team);
+            Team teamA = new Team();
+            teamA.setName("A");
+            em.persist(teamA);
+
+            Team teamB = new Team();
+            teamB.setName("B");
+            em.persist(teamB);
 
             Member member = new Member();
             member.setUsername("member1");
-            member.setTeam(team);
-            entityManager.persist(member);
+            member.setTeam(teamA);
+            em.persist(member);
 
-            entityManager.flush();
-            entityManager.clear();
+            em.flush();
+            em.clear();
 
-            Member member1 = entityManager.find(Member.class, member.getId());
-            Team team1 = member1.getTeam();
+            Member findMember = em.find(Member.class, member.getId());
+            System.out.println("Team: "+ findMember.getTeam().getName());
+            Team findTeam = em.find(Team.class, 2L);
 
-            System.out.println("Team: "+ team1.getName());
+            System.out.println("Find Team: "+ findTeam.getName());
 
+            findMember.setTeam(findTeam);
+
+            em.flush();
+
+            System.out.println("Team: "+ findMember.getTeam().getName());
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
         } finally {
-            entityManager.close();
+            em.close();
         }
         emf.close();
     }
