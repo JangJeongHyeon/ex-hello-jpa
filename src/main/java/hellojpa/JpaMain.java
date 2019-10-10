@@ -19,11 +19,14 @@ public class JpaMain {
 
             Member member = new Member();
             member.setUsername("member1");
-            member.setTeamId(team.getId());
+            member.setTeam(team);
             entityManager.persist(member);
 
+            entityManager.flush();
+            entityManager.clear();
+
             Member member1 = entityManager.find(Member.class, member.getId());
-            Team team1 = entityManager.find(Team.class, member1.getTeamId());
+            Team team1 = member1.getTeam();
 
             System.out.println("Team: "+ team1.getName());
 
