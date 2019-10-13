@@ -23,8 +23,8 @@ public class JpaMain {
             member.changeTeam(team);
             em.persist(member);
 
-//            em.flush();
-//            em.clear();
+            em.flush();
+            em.clear();
 
             Team findTeam = em.find(Team.class, team.getId());
             List<Member> members = findTeam.getMembers();
