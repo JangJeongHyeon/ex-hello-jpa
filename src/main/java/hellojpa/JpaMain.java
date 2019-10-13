@@ -33,6 +33,7 @@ public class JpaMain {
             System.out.println("====================================");
             for (Member m : members) {
                 System.out.println("m = " + m.getUsername());
+                System.out.println("members = " + findTeam);
             }
             System.out.println("====================================");
 
